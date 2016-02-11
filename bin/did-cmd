@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did cmd [<options>] <did-name>
+
+See 'did help cmd' for more help.
+
+Options:
+--
+"
+
+main() {
+  GETOPT_ARGS='+did-name' \
+    getopt "$@"
+  if [[ ! $did_name =~ / ]]; then
+    did_name="dids/$did_name"
+  elif [[ $did_name =~ ^\./ ]]; then
+    did_name="${did_name#./}"
+  fi
+  local run="$(did id "$did_name" | ypath)"
+  echo "docker run $run"
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

@@ -1,0 +1,55 @@
+did
+===
+
+  Docker ID CLI Tool
+
+= Synopsis
+
+  > did search nethack
+  > did id --yaml dids/nethack
+  > did man dids/nethack
+  > did cmds dids/nethack
+  > did cmd dids/nethack
+  > did run dids/nethack -u ingy-rog-mal-hum
+
+= Description
+
+Docker ID container images (dids) are regular Docker container images that
+report identification information about themselves. That is, you can ask an
+image for information about what a container does and how to call it. This
+information is available in both human readable and machine readable form.
+
+The `did` command is a tool for more easily finding and interacting with these
+images. You can do things like the following:
+
+* Search for known dids
+* Ask the did for a man page
+* Ask the did for its identification info (in JSON or YAML)
+* List the commands (entrypoints) of a did
+* Print a `docker run ...` command for an entrypoint
+* Run a did command
+
+= Installation
+
+Currently there are 2 ways to install the `did` command. You can:
+
+  git clone git@github.com:ingydotnet/did
+  # Add this line to your Bash or Zsh startup:
+  source /path/to/did/.rc
+
+The did commands currently have various runtime dependencies. If you want to
+avoid installing these dependencies, you are in luck, because the did tool
+itself has been packaged as a did. Just run this alias command and you should
+be ready to go:
+
+  alias did='docker run -it --entrypoint /did dids/did'
+
+= See
+
+See http://info.dockerid.com for for info on the Docker ID project.
+
+= Copyright & License
+
+Copyright 2016. Ingy döt Net.
+
+The MIT License (MIT)

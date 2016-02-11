@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did id [<options>] <did-name>
+
+See 'did help id' for more help.
+
+Options:
+--
+v,volume    Additional volumes to mount
+e,env       Additional environment variables
+"
+
+main() {
+  GETOPT_ARGS='+did-name' \
+    getopt "$@"
+  if [[ ! $did_name =~ / ]]; then
+    did_name="dids/$did_name"
+  elif [[ $did_name =~ ^\./ ]]; then
+    did_name="${did_name#./}"
+  fi
+  local cmd=(
+    $(did-cmd "$did_name")
+  )
+  eval "${cmd[@]}" "$@"
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

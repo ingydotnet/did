@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did id [<options>] <did-name>
+
+See 'did help id' for more help.
+
+Options:
+--
+j,json      Show Docker ID info in JSON (default)
+y,yaml      Show Docker ID info in YAML
+"
+
+main() {
+  GETOPT_ARGS='+did-name' \
+    getopt "$@"
+  if [[ ! $did_name =~ / ]]; then
+    did_name="dids/$did_name"
+  elif [[ $did_name =~ ^\./ ]]; then
+    did_name="${did_name#./}"
+  fi
+  if $option_yaml; then
+    docker run "$did_name"
+  else
+    docker run "$did_name" | yaml2json
+  fi
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

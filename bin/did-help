@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+
+main() {
+  if [[ $# -eq 0 ]]; then
+    overview
+  else
+    command="$1"; shift
+    [[ $command =~ ^[a-zA-Z]+$ ]] ||
+      die "Invalid help topic: '$command'"
+    [[ $# -eq 0 ]] ||
+      die "Unknown arguments: '$@'"
+    can help:$command ||
+      die "No help for command: '$command'"
+    "help:$command"
+  fi
+}
+
+overview() {
+  cat <<...
+Usage: did <command> <options> <arguments>
+
+A CLI tool for working with Docker ID container images.
+
+See:
+* http://info.dockerid.com
+* 'man did' for complete documentation.
+* 'did help <command>' for specific doc.
+
+Commands:
+  build     Add Docker ID layers to a 'docker build' image
+  cmd       Print a 'docker run' command for an entrypoint
+  cmds      List all commands (entrypoints) for an image
+  id        Print Docker ID data for an image to stdout
+  run       Run the docker command for an entrypoint
+  search    Find existing 'did' images
+
+...
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

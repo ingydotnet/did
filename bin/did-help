@@ -19,25 +19,167 @@ main() {
 
 overview() {
   cat <<...
-Usage: did <command> <options> <arguments>
+did - A CLI tool for working with Docker ID container images.
 
-A CLI tool for working with Docker ID container images.
 
 See:
 * http://info.dockerid.com
 * 'man did' for complete documentation.
 * 'did help <command>' for specific doc.
 
-Commands:
-  build     Add Docker ID layers to a 'docker build' image
-  cmd       Print a 'docker run' command for an entrypoint
-  cmds      List all commands (entrypoints) for an image
-  id        Print Docker ID data for an image to stdout
-  run       Run the docker command for an entrypoint
-  search    Find existing 'did' images
+
+Usage: did  <subcommands> [options]
+
+Subcommands:
+_complete  Generate self completion
+build      Add Docker ID layers to a 'docker build' image
+cmd        Print a 'docker run' command for an entrypoint
+cmds       List all commands (entrypoints) for an image
+help       Show command help
+id         Print Docker ID data for an image to stdout
+run        Run the docker command for an entrypoint
+search     Find existing 'did' images
+
+Options:
+--help -h         Show command help
 
 ...
 }
+
+help:_complete() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did _complete [options]
+
+
+Options:
+--bash            for bash
+--help -h         Show command help
+--name            name of the program
+--zsh             for zsh
+
+...
+}
+
+help:build() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did build <id> [options]
+
+Parameters:
+id  *      docker id
+
+Options:
+--help -h         Show command help
+
+...
+}
+
+help:cmd() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did cmd <id> [options]
+
+Parameters:
+id  *      docker id
+
+Options:
+--help -h         Show command help
+
+...
+}
+
+help:cmds() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did cmds [options]
+
+
+Options:
+--help -h         Show command help
+
+...
+}
+
+help:help() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did help <subcommands> [options]
+
+Subcommands:
+_complete  
+build      
+cmd        
+cmds       
+id         
+run        
+search     
+
+Options:
+--all             
+--help -h         Show command help
+
+...
+}
+
+help:id() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did id <id> [options]
+
+Parameters:
+id  *      docker id
+
+Options:
+--help -h         Show command help
+
+...
+}
+
+help:run() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did run <id> [options]
+
+Parameters:
+id  *      docker id
+
+Options:
+--help -h         Show command help
+
+...
+}
+
+help:search() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did search [<q>] [options]
+
+Parameters:
+q         The search parameter
+
+Options:
+--help -h         Show command help
+
+...
+}
+
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"
 

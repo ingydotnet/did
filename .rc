@@ -7,3 +7,7 @@ export DID_ROOT="$(cd $(dirname $DID_ROOT); pwd)"
 
 export PATH="$DID_ROOT/bin:$PATH"
 export MANPATH="$DID_ROOT/man:$MANPATH"
+
+if [[ ! -n ${ZSH_VERSION-} ]]; then
+  source "$DID_ROOT/share/completion.bash"
+fi

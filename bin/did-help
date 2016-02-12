@@ -38,6 +38,7 @@ help    Show command help
 id      Print Docker ID data for an image to stdout
 run     Run the docker command for an entrypoint
 search  Find existing 'did' images
+shell   Open shell
 
 Options:
 --help -h         Show command help
@@ -97,6 +98,7 @@ cmds
 id         
 run        
 search     
+shell      
 
 Options:
 --all         
@@ -139,6 +141,22 @@ Usage: did search [<q>]
 
 Parameters:
 q         The search parameter
+
+...
+}
+
+help:shell() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did shell [options]
+
+
+Options:
+--ash          Ash
+--bash         Bash (default)
+--zsh          Zsh
 
 ...
 }

@@ -35,4 +35,13 @@ subcommands:
     parameters:
     - name: q
       summary: The search parameter
+  shell:
+    summary: Open shell
+    options:
+    - name: bash
+      summary: Bash (default)
+    - name: zsh
+      summary: Zsh
+    - name: ash
+      summary: Ash
 

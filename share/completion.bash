@@ -12,7 +12,7 @@ _did() {
     case $COMP_CWORD in
 
     1)
-        _did_compreply '_complete -- Generate self completion'$'\n''build     -- Add Docker ID layers to a '"'"'docker build'"'"' image'$'\n''cmd       -- Print a '"'"'docker run'"'"' command for an entrypoint'$'\n''cmds      -- List all commands (entrypoints) for an image'$'\n''help      -- Show command help'$'\n''id        -- Print Docker ID data for an image to stdout'$'\n''run       -- Run the docker command for an entrypoint'$'\n''search    -- Find existing '"'"'did'"'"' images'
+        _did_compreply '_complete -- Generate self completion'$'\n''build     -- Add Docker ID layers to a '"'"'docker build'"'"' image'$'\n''cmd       -- Print a '"'"'docker run'"'"' command for an entrypoint'$'\n''cmds      -- List all commands (entrypoints) for an image'$'\n''help      -- Show command help'$'\n''id        -- Print Docker ID data for an image to stdout'$'\n''run       -- Run the docker command for an entrypoint'$'\n''search    -- Find existing '"'"'did'"'"' images'$'\n''shell     -- Open shell'
 
     ;;
     *)
@@ -76,7 +76,7 @@ _did() {
         case $COMP_CWORD in
 
         2)
-            _did_compreply '_complete '$'\n''build     '$'\n''cmd       '$'\n''cmds      '$'\n''completion'$'\n''id        '$'\n''pod       '$'\n''run       '$'\n''search    '$'\n''validate  '
+            _did_compreply '_complete '$'\n''build     '$'\n''cmd       '$'\n''cmds      '$'\n''completion'$'\n''id        '$'\n''pod       '$'\n''run       '$'\n''search    '$'\n''shell     '$'\n''validate  '
 
         ;;
         *)
@@ -99,6 +99,8 @@ _did() {
           run)
           ;;
           search)
+          ;;
+          shell)
           ;;
           validate)
           ;;
@@ -150,6 +152,26 @@ _did() {
 
           *)
             _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"
+          ;;
+        esac
+        ;;
+        esac
+      ;;
+      shell)
+        case $COMP_CWORD in
+        *)
+        case ${COMP_WORDS[$COMP_CWORD-1]} in
+          --help|-h)
+          ;;
+          --bash)
+          ;;
+          --zsh)
+          ;;
+          --ash)
+          ;;
+
+          *)
+            _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"$'\n'"'--bash -- Bash (default)'"$'\n'"'--zsh  -- Zsh'"$'\n'"'--ash  -- Ash'"
           ;;
         esac
         ;;

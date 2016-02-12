@@ -8,6 +8,9 @@ use FindBin '$Bin';
 use App::Spec;
 my $spec = App::Spec->read("$Bin/did-spec.yaml");
 
+my $cmds = $spec->subcommands;
+delete $cmds->{_complete};
+
 my $help_all = $spec->usage(
     commands => [],
 );
@@ -17,7 +20,8 @@ $help_all =~ s/(?=^Usage)/$description\n\n/m;
 
 my @helps;
 
-my $cmds = $spec->subcommands;
+my $options = $spec->options;
+@$options = ();
 
 for my $cmd (sort keys %$cmds) {
     my $cmd_spec = $cmds->{ $cmd };

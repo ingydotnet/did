@@ -31,34 +31,16 @@ See:
 Usage: did  <subcommands> [options]
 
 Subcommands:
-_complete  Generate self completion
-build      Add Docker ID layers to a 'docker build' image
-cmd        Print a 'docker run' command for an entrypoint
-cmds       List all commands (entrypoints) for an image
-help       Show command help
-id         Print Docker ID data for an image to stdout
-run        Run the docker command for an entrypoint
-search     Find existing 'did' images
+build   Add Docker ID layers to a 'docker build' image
+cmd     Print a 'docker run' command for an entrypoint
+cmds    List all commands (entrypoints) for an image
+help    Show command help
+id      Print Docker ID data for an image to stdout
+run     Run the docker command for an entrypoint
+search  Find existing 'did' images
 
 Options:
 --help -h         Show command help
-
-...
-}
-
-help:_complete() {
-  cat <<...
-did - A CLI tool for working with Docker ID container images.
-
-
-Usage: did _complete [options]
-
-
-Options:
---bash            for bash
---help -h         Show command help
---name            name of the program
---zsh             for zsh
 
 ...
 }
@@ -68,13 +50,10 @@ help:build() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did build <id> [options]
+Usage: did build <id>
 
 Parameters:
 id  *      docker id
-
-Options:
---help -h         Show command help
 
 ...
 }
@@ -84,13 +63,10 @@ help:cmd() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did cmd <id> [options]
+Usage: did cmd <id>
 
 Parameters:
 id  *      docker id
-
-Options:
---help -h         Show command help
 
 ...
 }
@@ -100,11 +76,8 @@ help:cmds() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did cmds [options]
+Usage: did cmds
 
-
-Options:
---help -h         Show command help
 
 ...
 }
@@ -126,8 +99,7 @@ run
 search     
 
 Options:
---all             
---help -h         Show command help
+--all         
 
 ...
 }
@@ -137,13 +109,10 @@ help:id() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did id <id> [options]
+Usage: did id <id>
 
 Parameters:
 id  *      docker id
-
-Options:
---help -h         Show command help
 
 ...
 }
@@ -153,13 +122,10 @@ help:run() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did run <id> [options]
+Usage: did run <id>
 
 Parameters:
 id  *      docker id
-
-Options:
---help -h         Show command help
 
 ...
 }
@@ -169,13 +135,10 @@ help:search() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did search [<q>] [options]
+Usage: did search [<q>]
 
 Parameters:
 q         The search parameter
-
-Options:
---help -h         Show command help
 
 ...
 }

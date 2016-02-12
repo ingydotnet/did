@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did build [<options>] <did-name>
+
+See 'did help build' for more help.
+
+Options:
+--
+"
+
+main() {
+  [[ -e Dockerfile ]] ||
+    error "No './Dockerfile'. Required for build."
+  [[ -e docker/id.yml ]] ||
+    error "No './docker/id.yml'. Required for build."
+  docker build .
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

@@ -3,7 +3,7 @@
 [[ -n ${ZSH_VERSION-} ]] &&
   DID_ROOT="$0" ||
   DID_ROOT="$BASH_SOURCE"
-DID_ROOT="$(cd $(dirname $DID_ROOT); pwd)"
+export DID_ROOT="$(cd $(dirname $DID_ROOT); pwd)"
 
 export PATH="$DID_ROOT/bin:$PATH"
 export MANPATH="$DID_ROOT/man:$MANPATH"

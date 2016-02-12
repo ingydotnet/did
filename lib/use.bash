@@ -28,3 +28,13 @@ export PATH="$(
 ):$PATH"
 
 source bash+ :std can
+
+ypath() {
+  [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
+  "$DID_ROOT/sbin/ypath" "$@"
+}
+
+yaml2json() {
+  [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
+  "$DID_ROOT/sbin/yaml2json" "$@"
+}

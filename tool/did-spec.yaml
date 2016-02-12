@@ -1,0 +1,38 @@
+---
+name: did
+appspec: { "version": 0.001 }
+title: A CLI tool for working with Docker ID container images.
+description: |
+  See:
+  * http://info.dockerid.com
+  * 'man did' for complete documentation.
+  * 'did help <command>' for specific doc.
+options: []
+subcommands:
+  build:
+    summary: Add Docker ID layers to a 'docker build' image
+    parameters:
+    - &param-id
+      name: id
+      summary: docker id
+      required: true
+  cmd:
+    summary: Print a 'docker run' command for an entrypoint
+    parameters:
+    - *param-id
+  cmds:
+    summary: List all commands (entrypoints) for an image
+  id:
+    summary: Print Docker ID data for an image to stdout
+    parameters:
+    - *param-id
+  run:
+    summary: Run the docker command for an entrypoint
+    parameters:
+    - *param-id
+  search:
+    summary: Find existing 'did' images
+    parameters:
+    - name: q
+      summary: The search parameter
+

@@ -36,6 +36,7 @@ clean purge:
 update: doc
 
 doc: $(MAN1) $(MANS) ReadMe.pod
+	perl tool/generate-help-functions.pl > bin/did-help
 
 $(MAN1)/%.1: doc/%.swim
 	swim --to=man $< > $@

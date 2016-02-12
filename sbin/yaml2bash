@@ -1,0 +1,23 @@
+#!/usr/bin/env coffee
+
+yaml_file = process.argv[2]
+
+fs = require 'fs'
+yaml = require 'js-yaml'
+
+input = fs.readFileSync(yaml_file).toString()
+data = yaml.load input
+
+get = (object, key, required=false)->
+  value = object[key]
+  if not value?
+    if required
+      throw "Error: missing key '#{key}' in docker-id.yml"
+  value
+
+bash = ''
+bash += "did_tag='#{get data, 'user', true}/#{get data, 'name', true}'\n"
+for elem in get(data, 'entry')
+  bash += "cmd_#{get elem, 'name'}_run='#{get elem, 'run'}'\n"
+
+process.stdout.write bash

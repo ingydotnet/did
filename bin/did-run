@@ -15,13 +15,8 @@ e,env       Additional environment variables
 "
 
 main() {
-  GETOPT_ARGS='+did-name' \
-    getopt "$@"
-  if [[ ! $did_name =~ / ]]; then
-    did_name="dids/$did_name"
-  elif [[ $did_name =~ ^\./ ]]; then
-    did_name="${did_name#./}"
-  fi
+  did_name="${1:?did_name is required first arg}"; shift
+  normalize-did-name
   local cmd=(
     $(did-cmd "$did_name")
   )

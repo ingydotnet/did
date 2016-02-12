@@ -3,8 +3,10 @@
 source "$(dirname $BASH_SOURCE)/../lib/use.bash"
 use GetOpt
 
+: ${DID_ROOT:?}
+
 GETOPT_SPEC="\
-  did build [<options>] <did-name>
+  did build [<options>]
 
 See 'did help build' for more help.
 
@@ -15,9 +17,33 @@ Options:
 main() {
   [[ -e Dockerfile ]] ||
     error "No './Dockerfile'. Required for build."
-  [[ -e docker/id.yml ]] ||
-    error "No './docker/id.yml'. Required for build."
-  docker build .
+  [[ -e docker-id.yml ]] ||
+    error "No './docker-id.yml'. Required for build."
+
+  local build_path="./.docker-id-$$"
+  mkdir -p "$build_path"
+
+  docker build . | tee "$build_path/log"
+  local image_id="$(tail -n1 "$build_path/log" | cut -d' ' -f3)"
+  [[ $image_id =~ ^[0-9a-f]+$ ]] || die ">>$image_id<<"
+  rm -f "$build_path/log"
+
+  cp Dockerfile "$build_path/Dockerfile.$image_id"
+  cp docker-id.yml "$build_path"
+  cat docker-id.yml | yaml2json \
+    > "$build_path/docker-id.json"
+
+  eval "$(yaml2bash docker-id.yml)"
+
+  cat <<... > "$build_path/Dockerfile"
+FROM $image_id
+
+COPY ./ /docker/
+
+ENTRYPOINT ["/bin/cat", "/docker/docker-id.yml"]
+...
+
+  ( cd "$build_path" && docker build -t "$did_tag" . )
 }
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"

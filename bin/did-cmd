@@ -15,13 +15,9 @@ Options:
 main() {
   GETOPT_ARGS='+did-name' \
     getopt "$@"
-  if [[ ! $did_name =~ / ]]; then
-    did_name="dids/$did_name"
-  elif [[ $did_name =~ ^\./ ]]; then
-    did_name="${did_name#./}"
-  fi
-  local run="$(did id "$did_name" | ypath)"
-  echo "docker run $run"
+  normalize-did-name
+  eval "$(yaml2bash docker-id.yml)"
+  echo "docker run $cmd_main_run"
 }
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"

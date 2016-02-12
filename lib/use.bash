@@ -29,12 +29,25 @@ export PATH="$(
 
 source bash+ :std can
 
-ypath() {
+error() {
+  echo "Error: $@" >&2
+  exit 1
+}
+
+yaml2bash() {
   [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
-  "$DID_ROOT/sbin/ypath" "$@"
+  "$DID_ROOT/sbin/yaml2bash" "$@"
 }
 
 yaml2json() {
   [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
   "$DID_ROOT/sbin/yaml2json" "$@"
+}
+
+normalize-did-name() {
+  if [[ ! $did_name =~ / ]]; then
+    did_name="dids/$did_name"
+  elif [[ $did_name =~ ^\./ ]]; then
+    did_name="${did_name#./}"
+  fi
 }

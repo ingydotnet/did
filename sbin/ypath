@@ -1,7 +1,0 @@
-#!/usr/bin/env coffee
-
-fs = require 'fs'
-
-input = fs.readFileSync('/dev/stdin').toString()
-data = JSON.parse input
-process.stdout.write data.entry[0].run

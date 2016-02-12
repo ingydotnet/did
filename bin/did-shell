@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did shell [<options>] <did-name>
+
+See 'did help shell' for more help.
+
+Options:
+--
+--bash   - Bash (default)
+--zsh    - Zsh
+--ash    - Ash
+"
+
+main() {
+  GETOPT_ARGS='+did-name' \
+    getopt "$@"
+  normalize-did-name
+  if $option_bash; then
+    docker run -it --entrypoint /bin/bash "$did_name"
+  elif $option_ash; then
+    docker run -it --entrypoint /bin/ash "$did_name"
+  elif $option_zsh; then
+    docker run -it --entrypoint /bin/zsh "$did_name"
+  else
+    docker run -it --entrypoint /bin/bash "$did_name"
+  fi
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

@@ -17,15 +17,11 @@ y,yaml      Show Docker ID info in YAML
 main() {
   GETOPT_ARGS='+did-name' \
     getopt "$@"
-  if [[ ! $did_name =~ / ]]; then
-    did_name="dids/$did_name"
-  elif [[ $did_name =~ ^\./ ]]; then
-    did_name="${did_name#./}"
-  fi
+  normalize-did-name
   if $option_yaml; then
-    docker run "$did_name"
+    docker run --entrypoint cat "$did_name" /docker/docker-id.yml
   else
-    docker run "$did_name" | yaml2json
+    docker run --entrypoint cat "$did_name" /docker/docker-id.json
   fi
 }
 

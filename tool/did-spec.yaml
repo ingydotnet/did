@@ -47,4 +47,6 @@ subcommands:
       summary: Zsh
     - name: ash
       summary: Ash
+    parameters:
+    - *param-id
 

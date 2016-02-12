@@ -163,6 +163,9 @@ _did() {
       ;;
       shell)
         case $COMP_CWORD in
+        2)
+                _did_shell_param_id_completion
+        ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
           --help|-h)
@@ -209,6 +212,10 @@ _did_id_param_id_completion() {
     _did_compreply "$param_id"
 }
 _did_run_param_id_completion() {
+    local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_id"
+}
+_did_shell_param_id_completion() {
     local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
     _did_compreply "$param_id"
 }

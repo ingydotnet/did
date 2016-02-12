@@ -301,6 +301,7 @@ _did_run_param_id_completion
                 # ---- Command: shell
                 _arguments -s -C \
                     '1: :->cmd1' \
+                    '2: :->id' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     '--bash[Bash (default)]:bash' \
@@ -308,6 +309,11 @@ _did_run_param_id_completion
                     '--ash[Ash]:ash' \
                     && ret=0
 
+                case $state in
+                id)
+_did_shell_param_id_completion
+                ;;
+                esac
 
             ;;
             esac

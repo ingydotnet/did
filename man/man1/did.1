@@ -70,8 +70,8 @@
 .rr rF
 .\" ========================================================================
 .\"
-.IX Title "IO::FILE=IO(0X236F4F0) 1"
-.TH IO::FILE=IO(0X236F4F0) 1 "2016-02-11" "perl v5.18.2" "User Contributed Perl Documentation"
+.IX Title "IO::FILE=IO(0XE5D4F0) 1"
+.TH IO::FILE=IO(0XE5D4F0) 1 "2016-02-12" "perl v5.18.2" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -79,7 +79,7 @@
 .SH "did"
 .IX Header "did"
 .Vb 1
-\&    Docker ID Tool
+\&    Docker ID CLI Tool
 .Ve
 .SH "Synopsis"
 .IX Header "Synopsis"
@@ -93,7 +93,7 @@
 .Ve
 .SH "Description"
 .IX Header "Description"
-Docker \s-1ID\s0 container images (dids) are regular Docker container images that report identification information about themselves. That is, you can ask an image for information about what a container does and how to call it. This information is available in both human readable and machine readable form.
+Docker \s-1ID\s0 container images (dids) are regular Docker container images that report identification information about themselves. That is, you can ask an image for information about what a container does and how to run it. This information is available in both human readable and machine readable form.
 .PP
 The \f(CW\*(C`did\*(C'\fR command is a tool for more easily finding and interacting with these images. You can do things like the following:
 .IP "\(bu" 4
@@ -108,20 +108,22 @@ List the commands (entrypoints) of a did
 Print a \f(CW\*(C`docker run ...\*(C'\fR command for an entrypoint
 .IP "\(bu" 4
 Run a did command
+.SH "Commands"
+.IX Header "Commands"
+.ie n .IP """build""" 4
+.el .IP "\f(CWbuild\fR" 4
+.IX Item "build"
+This command helps you build a did image properly. First it runs a normal \f(CW\*(C`docker build\*(C'\fR command, then it copies over your Docker \s-1ID\s0 files and sets the Docker \s-1ID\s0 default entrypoint. It also tags your image. All in accordance to your \f(CW\*(C`docker/id.yml\*(C'\fR file.
+.ie n .IP """id""" 4
+.el .IP "\f(CWid\fR" 4
+.IX Item "id"
+Asks a did for its id data; either in \s-1YAML\s0 or \s-1JSON.\s0
 .SH "Installation"
 .IX Header "Installation"
-Currently there are 2 ways to install the \f(CW\*(C`did\*(C'\fR command. You can:
-.PP
 .Vb 3
 \&    git clone git@github.com:ingydotnet/did
 \&    # Add this line to your Bash or Zsh startup:
 \&    source /path/to/did/.rc
-.Ve
-.PP
-The did commands currently have various runtime dependencies. If you want to avoid installing these dependencies, you are in luck, because the did tool itself has been packaged as a did. Just run this alias command and you should be ready to go:
-.PP
-.Vb 1
-\&    alias did=\*(Aqdocker run \-it \-\-entrypoint /did dids/did\*(Aq
 .Ve
 .SH "See"
 .IX Header "See"

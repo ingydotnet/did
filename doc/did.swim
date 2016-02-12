@@ -16,7 +16,7 @@ did
 
 Docker ID container images (dids) are regular Docker container images that
 report identification information about themselves. That is, you can ask an
-image for information about what a container does and how to call it. This
+image for information about what a container does and how to run it. This
 information is available in both human readable and machine readable form.
 
 The `did` command is a tool for more easily finding and interacting with these
@@ -29,20 +29,24 @@ images. You can do things like the following:
 * Print a `docker run ...` command for an entrypoint
 * Run a did command
 
-= Installation
+= Commands
 
-Currently there are 2 ways to install the `did` command. You can:
+- `build`
+
+  This command helps you build a did image properly. First it runs a normal
+  `docker build` command, then it copies over your Docker ID files and sets
+  the Docker ID default entrypoint. It also tags your image. All in accordance
+  to your `docker/id.yml` file.
+
+- `id`
+
+  Asks a did for its id data; either in YAML or JSON.
+
+= Installation
 
   git clone git@github.com:ingydotnet/did
   # Add this line to your Bash or Zsh startup:
   source /path/to/did/.rc
-
-The did commands currently have various runtime dependencies. If you want to
-avoid installing these dependencies, you are in luck, because the did tool
-itself has been packaged as a did. Just run this alias command and you should
-be ready to go:
-
-  alias did='docker run -it --entrypoint /did dids/did'
 
 = See
 

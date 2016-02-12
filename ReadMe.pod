@@ -8,7 +8,7 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 =head1 did
 
-    Docker ID Tool
+    Docker ID CLI Tool
 
 =head1 Synopsis
 
@@ -23,7 +23,7 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 Docker ID container images (dids) are regular Docker container images that
 report identification information about themselves. That is, you can ask an
-image for information about what a container does and how to call it. This
+image for information about what a container does and how to run it. This
 information is available in both human readable and machine readable form.
 
 The C<did> command is a tool for more easily finding and interacting with
@@ -45,20 +45,28 @@ these images. You can do things like the following:
 
 =back
 
-=head1 Installation
+=head1 Commands
 
-Currently there are 2 ways to install the C<did> command. You can:
+=over
+
+=item C<build>
+
+This command helps you build a did image properly. First it runs a normal
+C<docker build> command, then it copies over your Docker ID files and sets the
+Docker ID default entrypoint. It also tags your image. All in accordance to
+your C<docker/id.yml> file.
+
+=item C<id>
+
+Asks a did for its id data; either in YAML or JSON.
+
+=back
+
+=head1 Installation
 
     git clone git@github.com:ingydotnet/did
     # Add this line to your Bash or Zsh startup:
     source /path/to/did/.rc
-
-The did commands currently have various runtime dependencies. If you want to
-avoid installing these dependencies, you are in luck, because the did tool
-itself has been packaged as a did. Just run this alias command and you should
-be ready to go:
-
-    alias did='docker run -it --entrypoint /did dids/did'
 
 =head1 See
 

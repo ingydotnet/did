@@ -38,6 +38,10 @@ update: doc
 doc: $(MAN1) $(MANS) ReadMe.pod
 	perl tool/generate-help-functions.pl > bin/did-help
 
+compgen:
+	appspec completion tool/did-spec.yaml --bash > share/completion.bash
+	appspec completion tool/did-spec.yaml --zsh > share/zsh/_did
+
 $(MAN1)/%.1: doc/%.swim
 	swim --to=man $< > $@
 

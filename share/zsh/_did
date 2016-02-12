@@ -1,0 +1,295 @@
+#compdef did
+
+_did() {
+    local program=did
+    typeset -A opt_args
+    local curcontext="$curcontext" state line context
+
+
+        # ---- Command: 
+        _arguments -s  \
+            '1: :->cmd1' \
+            '*: :->args' \
+            && ret=0
+
+
+        case $state in
+        cmd1)
+            _alternative 'args:cmd2:((_complete\:"Generate self completion" build\:"Add Docker ID layers to a '"'"'docker build'"'"' image" cmd\:"Print a '"'"'docker run'"'"' command for an entrypoint" cmds\:"List all commands (entrypoints) for an image" help\:"Show command help" id\:"Print Docker ID data for an image to stdout" run\:"Run the docker command for an entrypoint" search\:"Find existing '"'"'did'"'"' images"))'
+        ;;
+
+        args)
+            case $line[1] in
+            _complete)
+
+                # ---- Command: _complete
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    '--name[name of the program]:name' \
+                    '--zsh[for zsh]' \
+                    '--bash[for bash]' \
+                    && ret=0
+
+
+            ;;
+            build)
+
+                # ---- Command: build
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->id' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                id)
+
+                ;;
+                esac
+
+            ;;
+            cmd)
+
+                # ---- Command: cmd
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->id' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                id)
+
+                ;;
+                esac
+
+            ;;
+            cmds)
+
+                # ---- Command: cmds
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+
+            ;;
+            help)
+
+                # ---- Command: help
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->cmd2' \
+                    '*: :->args' \
+                    && ret=0
+
+
+                case $state in
+                cmd2)
+                    _alternative 'args:cmd3:((_complete build cmd cmds completion id pod run search validate))'
+                ;;
+
+                args)
+                    case $line[2] in
+                    _complete)
+
+                        # ---- Command: help _complete
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    build)
+
+                        # ---- Command: help build
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    cmd)
+
+                        # ---- Command: help cmd
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    cmds)
+
+                        # ---- Command: help cmds
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    completion)
+
+                        # ---- Command: help completion
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    id)
+
+                        # ---- Command: help id
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    pod)
+
+                        # ---- Command: help pod
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    run)
+
+                        # ---- Command: help run
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    search)
+
+                        # ---- Command: help search
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    validate)
+
+                        # ---- Command: help validate
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    esac
+
+                ;;
+
+                esac
+            ;;
+            id)
+
+                # ---- Command: id
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->id' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                id)
+
+                ;;
+                esac
+
+            ;;
+            run)
+
+                # ---- Command: run
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->id' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                id)
+
+                ;;
+                esac
+
+            ;;
+            search)
+
+                # ---- Command: search
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '2: :->q' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                q)
+
+                ;;
+                esac
+
+            ;;
+            esac
+
+        ;;
+
+        esac
+
+}
+
+
+

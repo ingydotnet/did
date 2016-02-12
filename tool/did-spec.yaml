@@ -11,17 +11,20 @@ options: []
 subcommands:
   build:
     summary: Add Docker ID layers to a 'docker build' image
+    parameters: []
+  cmd:
+    summary: Print a 'docker run' command for an entrypoint
     parameters:
     - &param-id
       name: id
       summary: docker id
       required: true
-  cmd:
-    summary: Print a 'docker run' command for an entrypoint
-    parameters:
-    - *param-id
+      completion:
+        command_string: "docker images -a | cut -d' ' -f1 | grep ^dids/"
   cmds:
     summary: List all commands (entrypoints) for an image
+    parameters:
+    - *param-id
   id:
     summary: Print Docker ID data for an image to stdout
     parameters:

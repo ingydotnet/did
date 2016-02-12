@@ -39,24 +39,11 @@ _did() {
         esac
       ;;
       build)
-        case $COMP_CWORD in
-        2)
-        ;;
-        *)
-        case ${COMP_WORDS[$COMP_CWORD-1]} in
-          --help|-h)
-          ;;
-
-          *)
-            _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"
-          ;;
-        esac
-        ;;
-        esac
       ;;
       cmd)
         case $COMP_CWORD in
         2)
+                _did_cmd_param_id_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -71,6 +58,21 @@ _did() {
         esac
       ;;
       cmds)
+        case $COMP_CWORD in
+        2)
+                _did_cmds_param_id_completion
+        ;;
+        *)
+        case ${COMP_WORDS[$COMP_CWORD-1]} in
+          --help|-h)
+          ;;
+
+          *)
+            _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"
+          ;;
+        esac
+        ;;
+        esac
       ;;
       help)
         case $COMP_CWORD in
@@ -112,6 +114,7 @@ _did() {
       id)
         case $COMP_CWORD in
         2)
+                _did_id_param_id_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -128,6 +131,7 @@ _did() {
       run)
         case $COMP_CWORD in
         2)
+                _did_run_param_id_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -192,6 +196,22 @@ _did_compreply() {
     fi
 }
 
+_did_cmd_param_id_completion() {
+    local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_id"
+}
+_did_cmds_param_id_completion() {
+    local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_id"
+}
+_did_id_param_id_completion() {
+    local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_id"
+}
+_did_run_param_id_completion() {
+    local param_id=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_id"
+}
 
 
 complete -o default -F _did did

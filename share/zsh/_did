@@ -39,16 +39,10 @@ _did() {
                 # ---- Command: build
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
-                case $state in
-                id)
-
-                ;;
-                esac
 
             ;;
             cmd)
@@ -63,7 +57,7 @@ _did() {
 
                 case $state in
                 id)
-
+_did_cmd_param_id_completion
                 ;;
                 esac
 
@@ -73,10 +67,16 @@ _did() {
                 # ---- Command: cmds
                 _arguments -s -C \
                     '1: :->cmd1' \
+                    '2: :->id' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
+                case $state in
+                id)
+_did_cmds_param_id_completion
+                ;;
+                esac
 
             ;;
             help)
@@ -257,7 +257,7 @@ _did() {
 
                 case $state in
                 id)
-
+_did_id_param_id_completion
                 ;;
                 esac
 
@@ -274,7 +274,7 @@ _did() {
 
                 case $state in
                 id)
-
+_did_run_param_id_completion
                 ;;
                 esac
 

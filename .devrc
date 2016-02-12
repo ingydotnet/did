@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ -z $PERL_APPSPEC_ROOT ]]; then
+  echo "set PERL_APPSPEC_ROOT to /path/to/App-AppSpec-p5"
+
+else
+
+  export PERL5LIB=$PERL_APPSPEC_ROOT/lib:$PERL_APPSPEC_ROOT/ext/App-Spec-p5/lib:$PERL5LIB
+  PATH=$PERL_APPSPEC_ROOT/bin:$PATH
+fi

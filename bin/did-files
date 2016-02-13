@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+
+main() {
+  if [[ $# -eq 0 ]]; then
+    files=(Makefile docker-id.yml)
+  else
+    files=("$@")
+  fi
+
+  for file in "${files[@]}"; do
+     [[ $file =~ ^(Makefile|docker-id\.yml)$ ]] ||
+       or die "Invalid did file: '$file'"
+     cp "$DID_ROOT/share/$file" .
+     echo "Added '$file'."
+   done
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

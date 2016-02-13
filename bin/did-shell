@@ -10,9 +10,9 @@ See 'did help shell' for more help.
 
 Options:
 --
---bash   - Bash (default)
---zsh    - Zsh
---ash    - Ash
+bash   - Bash (default)
+zsh    - Zsh
+ash    - Ash
 "
 
 main() {

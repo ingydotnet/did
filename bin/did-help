@@ -34,6 +34,7 @@ Subcommands:
 build   Add Docker ID layers to a 'docker build' image
 cmd     Print a 'docker run' command for an entrypoint
 cmds    List all commands (entrypoints) for an image
+files   init files
 help    Show command help
 id      Print Docker ID data for an image to stdout
 run     Run the docker command for an entrypoint
@@ -51,8 +52,11 @@ help:build() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did build
+Usage: did build [options]
 
+
+Options:
+--push -p         push to docker hub
 
 ...
 }
@@ -62,10 +66,10 @@ help:cmd() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did cmd <id>
+Usage: did cmd <did-name>
 
 Parameters:
-id  *      docker id
+did-name  *      docker id
 
 ...
 }
@@ -75,10 +79,23 @@ help:cmds() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did cmds <id>
+Usage: did cmds <did-name>
 
 Parameters:
-id  *      docker id
+did-name  *      docker id
+
+...
+}
+
+help:files() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did files [<file>+]
+
+Parameters:
+file     []  files
 
 ...
 }
@@ -95,6 +112,7 @@ _complete
 build      
 cmd        
 cmds       
+files      
 id         
 run        
 search     
@@ -111,10 +129,14 @@ help:id() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did id <id>
+Usage: did id <did-name> [options]
 
 Parameters:
-id  *      docker id
+did-name  *      docker id
+
+Options:
+--json -j         Show Docker ID info in JSON (default)
+--yaml -y         Show Docker ID info in YAML
 
 ...
 }
@@ -124,10 +146,10 @@ help:run() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did run <id>
+Usage: did run <did-name>
 
 Parameters:
-id  *      docker id
+did-name  *      docker id
 
 ...
 }
@@ -137,10 +159,10 @@ help:search() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did search [<q>]
+Usage: did search [<term>]
 
 Parameters:
-q         The search parameter
+term         The search parameter
 
 ...
 }
@@ -150,10 +172,10 @@ help:shell() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did shell <id> [options]
+Usage: did shell <did-name> [options]
 
 Parameters:
-id  *      docker id
+did-name  *      docker id
 
 Options:
 --ash          Ash

@@ -15,7 +15,7 @@ _did() {
 
         case $state in
         cmd1)
-            _alternative 'args:cmd2:((_complete\:"Generate self completion" build\:"Add Docker ID layers to a '"'"'docker build'"'"' image" cmd\:"Print a '"'"'docker run'"'"' command for an entrypoint" cmds\:"List all commands (entrypoints) for an image" help\:"Show command help" id\:"Print Docker ID data for an image to stdout" run\:"Run the docker command for an entrypoint" search\:"Find existing '"'"'did'"'"' images" shell\:"Open shell"))'
+            _alternative 'args:cmd2:((_complete\:"Generate self completion" build\:"Add Docker ID layers to a '"'"'docker build'"'"' image" cmd\:"Print a '"'"'docker run'"'"' command for an entrypoint" cmds\:"List all commands (entrypoints) for an image" files\:"init files" help\:"Show command help" id\:"Print Docker ID data for an image to stdout" run\:"Run the docker command for an entrypoint" search\:"Find existing '"'"'did'"'"' images" shell\:"Open shell"))'
         ;;
 
         args)
@@ -41,6 +41,8 @@ _did() {
                     '1: :->cmd1' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
+                    '--push[push to docker hub]:push' \
+                    '-p[push to docker hub]:push' \
                     && ret=0
 
 
@@ -50,14 +52,14 @@ _did() {
                 # ---- Command: cmd
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
+                    '2: :->did-name' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
                 case $state in
-                id)
-_did_cmd_param_id_completion
+                did-name)
+_did_cmd_param_did-name_completion
                 ;;
                 esac
 
@@ -67,14 +69,31 @@ _did_cmd_param_id_completion
                 # ---- Command: cmds
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
+                    '2: :->did-name' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
                 case $state in
-                id)
-_did_cmds_param_id_completion
+                did-name)
+_did_cmds_param_did-name_completion
+                ;;
+                esac
+
+            ;;
+            files)
+
+                # ---- Command: files
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '*: :->file' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
+                case $state in
+                file)
+
                 ;;
                 esac
 
@@ -91,7 +110,7 @@ _did_cmds_param_id_completion
 
                 case $state in
                 cmd2)
-                    _alternative 'args:cmd3:((_complete build cmd cmds completion id pod run search shell validate))'
+                    _alternative 'args:cmd3:((_complete build cmd cmds completion files id pod run search shell validate))'
                 ;;
 
                 args)
@@ -151,6 +170,19 @@ _did_cmds_param_id_completion
                     completion)
 
                         # ---- Command: help completion
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
+                    files)
+
+                        # ---- Command: help files
                         _arguments -s -C \
                             '1: :->cmd1' \
                             '2: :->cmd2' \
@@ -250,14 +282,18 @@ _did_cmds_param_id_completion
                 # ---- Command: id
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
+                    '2: :->did-name' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
+                    '--json[Show Docker ID info in JSON (default)]:json' \
+                    '-j[Show Docker ID info in JSON (default)]:json' \
+                    '--yaml[Show Docker ID info in YAML]:yaml' \
+                    '-y[Show Docker ID info in YAML]:yaml' \
                     && ret=0
 
                 case $state in
-                id)
-_did_id_param_id_completion
+                did-name)
+_did_id_param_did-name_completion
                 ;;
                 esac
 
@@ -267,14 +303,14 @@ _did_id_param_id_completion
                 # ---- Command: run
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
+                    '2: :->did-name' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
                 case $state in
-                id)
-_did_run_param_id_completion
+                did-name)
+_did_run_param_did-name_completion
                 ;;
                 esac
 
@@ -284,13 +320,13 @@ _did_run_param_id_completion
                 # ---- Command: search
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->q' \
+                    '2: :->term' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     && ret=0
 
                 case $state in
-                q)
+                term)
 
                 ;;
                 esac
@@ -301,7 +337,7 @@ _did_run_param_id_completion
                 # ---- Command: shell
                 _arguments -s -C \
                     '1: :->cmd1' \
-                    '2: :->id' \
+                    '2: :->did-name' \
                     '--help[Show command help]' \
                     '-h[Show command help]' \
                     '--bash[Bash (default)]:bash' \
@@ -310,8 +346,8 @@ _did_run_param_id_completion
                     && ret=0
 
                 case $state in
-                id)
-_did_shell_param_id_completion
+                did-name)
+_did_shell_param_did-name_completion
                 ;;
                 esac
 

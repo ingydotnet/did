@@ -11,12 +11,16 @@ options: []
 subcommands:
   build:
     summary: Add Docker ID layers to a 'docker build' image
+    options:
+    - name: push
+      summary: push to docker hub
+      aliases: [p]
     parameters: []
   cmd:
     summary: Print a 'docker run' command for an entrypoint
     parameters:
     - &param-id
-      name: id
+      name: did-name
       summary: docker id
       required: true
       completion:
@@ -29,6 +33,19 @@ subcommands:
     summary: Print Docker ID data for an image to stdout
     parameters:
     - *param-id
+    options:
+    - name: json
+      aliases: [j]
+      summary: Show Docker ID info in JSON (default)
+    - name: yaml
+      aliases: [y]
+      summary: Show Docker ID info in YAML
+  files:
+    summary: init files
+    parameters:
+    - name: file
+      summary: files
+      multiple: true
   run:
     summary: Run the docker command for an entrypoint
     parameters:
@@ -36,7 +53,7 @@ subcommands:
   search:
     summary: Find existing 'did' images
     parameters:
-    - name: q
+    - name: term
       summary: The search parameter
   shell:
     summary: Open shell

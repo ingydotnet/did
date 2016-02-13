@@ -12,6 +12,7 @@ See 'did help build' for more help.
 
 Options:
 --
+p,push    Push image after build
 "
 
 main() {
@@ -44,6 +45,10 @@ ENTRYPOINT ["/bin/cat", "/docker/docker-id.yml"]
 ...
 
   ( cd "$build_path" && docker build -t "$did_tag" . )
+
+  rm -fr "$build_path"
+
+  docker push "$did_tag"
 }
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"

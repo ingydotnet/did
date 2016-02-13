@@ -3,8 +3,6 @@
 source "$(dirname $BASH_SOURCE)/../lib/use.bash"
 use GetOpt
 
-: ${DID_ROOT:?}
-
 GETOPT_SPEC="\
   did build [<options>]
 
@@ -16,6 +14,8 @@ p,push    Push image after build
 "
 
 main() {
+  [[ $# -gt 0 ]] || set -- --
+  getopt "$@"
   [[ -e Dockerfile ]] ||
     error "No './Dockerfile'. Required for build."
   [[ -e docker-id.yml ]] ||
@@ -48,7 +48,9 @@ ENTRYPOINT ["/bin/cat", "/docker/docker-id.yml"]
 
   rm -fr "$build_path"
 
-  docker push "$did_tag"
+  if $option_push; then
+    docker push "$did_tag"
+  fi
 }
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"

@@ -51,10 +51,8 @@ help:build() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did build <id>
+Usage: did build
 
-Parameters:
-id  *      docker id
 
 ...
 }
@@ -77,8 +75,10 @@ help:cmds() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did cmds
+Usage: did cmds <id>
 
+Parameters:
+id  *      docker id
 
 ...
 }
@@ -150,8 +150,10 @@ help:shell() {
 did - A CLI tool for working with Docker ID container images.
 
 
-Usage: did shell [options]
+Usage: did shell <id> [options]
 
+Parameters:
+id  *      docker id
 
 Options:
 --ash          Ash

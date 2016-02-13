@@ -5,7 +5,7 @@ yaml_file = process.argv[2]
 fs = require 'fs'
 yaml = require 'js-yaml'
 
-input = fs.readFileSync(yaml_file).toString()
+input = fs.readFileSync('/dev/stdin').toString()
 data = yaml.load input
 
 get = (object, key, required=false)->

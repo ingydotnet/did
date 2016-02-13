@@ -34,7 +34,7 @@ main() {
   cat docker-id.yml | yaml2json \
     > "$build_path/docker-id.json"
 
-  eval "$(yaml2bash docker-id.yml)"
+  eval "$(yaml2bash < docker-id.yml)"
 
   cat <<... > "$build_path/Dockerfile"
 FROM $image_id

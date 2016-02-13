@@ -16,7 +16,7 @@ main() {
   GETOPT_ARGS='+did-name' \
     getopt "$@"
   normalize-did-name
-  eval "$(yaml2bash docker-id.yml)"
+  eval "$(did id --yaml "$did_name" | yaml2bash)"
   echo "docker run $cmd_main_run"
 }
 

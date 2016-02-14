@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+use GetOpt
+
+GETOPT_SPEC="\
+  did cmd [<options>] <did-name>
+
+See 'did help cmd' for more help.
+
+Options:
+--
+"
+
+main() {
+  [[ $# -gt 0 ]] || set -- --
+  GETOPT_ARGS='term' \
+    getopt "$@"
+  term="${term:-.}"
+  grep -iE "^[^[:space:]]*$term[^[:space:]]*[[:space:]]" "$DID_ROOT/share/index"
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

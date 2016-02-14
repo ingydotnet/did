@@ -186,6 +186,118 @@ Options:
 }
 
 
+getopt:build() {
+    GETOPT_SPEC="\
+  did build [options]
+
+
+Options:
+--
+p,push         push to docker hub
+"
+}
+
+getopt:cmd() {
+    GETOPT_SPEC="\
+  did cmd <did-name>
+
+Parameters:
+did-name  *      docker id
+
+"
+}
+
+getopt:cmds() {
+    GETOPT_SPEC="\
+  did cmds <did-name>
+
+Parameters:
+did-name  *      docker id
+
+"
+}
+
+getopt:files() {
+    GETOPT_SPEC="\
+  did files [<file>+]
+
+Parameters:
+file     []  files
+
+"
+}
+
+getopt:help() {
+    GETOPT_SPEC="\
+  did help <subcommands> [options]
+
+Subcommands:
+_complete  
+build      
+cmd        
+cmds       
+files      
+id         
+run        
+search     
+shell      
+
+Options:
+--
+all         
+"
+}
+
+getopt:id() {
+    GETOPT_SPEC="\
+  did id <did-name> [options]
+
+Parameters:
+did-name  *      docker id
+
+Options:
+--
+j,json         Show Docker ID info in JSON (default)
+y,yaml         Show Docker ID info in YAML
+"
+}
+
+getopt:run() {
+    GETOPT_SPEC="\
+  did run <did-name>
+
+Parameters:
+did-name  *      docker id
+
+"
+}
+
+getopt:search() {
+    GETOPT_SPEC="\
+  did search [<term>]
+
+Parameters:
+term         The search parameter
+
+"
+}
+
+getopt:shell() {
+    GETOPT_SPEC="\
+  did shell <did-name> [options]
+
+Parameters:
+did-name  *      docker id
+
+Options:
+--
+ash          Ash
+bash         Bash (default)
+zsh          Zsh
+"
+}
+
+
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"
 
 # vim: set ft=sh lisp:

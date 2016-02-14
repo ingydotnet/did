@@ -40,8 +40,7 @@ yaml2bash() {
 }
 
 yaml2json() {
-  [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
-  "$DID_ROOT/sbin/yaml2json" "$@"
+  docker run -i dids/yaml2json "$@"
 }
 
 normalize-did-name() {

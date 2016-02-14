@@ -40,7 +40,7 @@ yaml2bash() {
 }
 
 yaml2json() {
-  docker run -i dids/yaml2json "$@"
+  docker run --rm --interactive --entrypoint /yaml2json dids/yaml2json "$@"
 }
 
 normalize-did-name() {

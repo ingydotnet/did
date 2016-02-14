@@ -24,27 +24,31 @@ main() {
   local build_path="./.docker-id-$$"
   mkdir -p "$build_path"
 
-  docker build . | tee "$build_path/log"
+  docker build --rm=true . | tee "$build_path/log"
   local image_id="$(tail -n1 "$build_path/log" | cut -d' ' -f3)"
   [[ $image_id =~ ^[0-9a-f]+$ ]] || die ">>$image_id<<"
   rm -f "$build_path/log"
 
   cp Dockerfile "$build_path/Dockerfile.$image_id"
   cp docker-id.yml "$build_path"
-  cat docker-id.yml | yaml2json \
+  cat docker-id.yml | yaml2json --pretty \
     > "$build_path/docker-id.json"
+  for doc in *.swim; do
+    cat $doc | did run swim --to=man > "$build_path/man.1"
+    break
+  done
 
   eval "$(yaml2bash < docker-id.yml)"
 
   cat <<... > "$build_path/Dockerfile"
 FROM $image_id
 
-COPY ./ /docker/
+COPY ./ /docker-id/
 
-ENTRYPOINT ["/bin/cat", "/docker/docker-id.yml"]
+ENTRYPOINT ["/bin/cat", "/docker-id/docker-id.yml"]
 ...
 
-  ( cd "$build_path" && docker build -t "$did_tag" . )
+  ( cd "$build_path" && docker build --rm=true --tag "$did_tag" . )
 
   rm -fr "$build_path"
 

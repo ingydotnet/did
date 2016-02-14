@@ -19,9 +19,9 @@ main() {
     getopt "$@"
   normalize-did-name
   if $option_yaml; then
-    docker run --entrypoint cat "$did_name" /docker/docker-id.yml
+    docker run --rm --entrypoint cat "$did_name" /docker-id/docker-id.yml
   else
-    docker run --entrypoint cat "$did_name" /docker/docker-id.json
+    docker run --rm --entrypoint cat "$did_name" /docker-id/docker-id.json
   fi
 }
 

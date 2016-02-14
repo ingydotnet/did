@@ -20,13 +20,13 @@ main() {
     getopt "$@"
   normalize-did-name
   if $option_bash; then
-    docker run -it --entrypoint /bin/bash "$did_name"
+    docker run -it --rm --entrypoint /bin/bash "$did_name"
   elif $option_ash; then
-    docker run -it --entrypoint /bin/ash "$did_name"
+    docker run -it --rm --entrypoint /bin/ash "$did_name"
   elif $option_zsh; then
-    docker run -it --entrypoint /bin/zsh "$did_name"
+    docker run -it --rm --entrypoint /bin/zsh "$did_name"
   else
-    docker run -it --entrypoint /bin/bash "$did_name"
+    docker run -it --rm --entrypoint /bin/bash "$did_name"
   fi
 }
 

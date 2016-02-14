@@ -1,6 +1,6 @@
 name := $(shell grep '^name:' docker-id.yml | cut -d' ' -f2)
 user := $(shell grep '^user:' docker-id.yml | cut -d' ' -f2)
-base := $(shell basename $$PWD)
+swim := $(name).swim
 DID_NAME := $(user)/$(name)
 
 default: build
@@ -15,5 +15,5 @@ update: doc
 
 doc: ReadMe.pod
 
-ReadMe.pod: $(base).swim
+ReadMe.pod: $(swim)
 	did run swim --to=pod --complete < $< > $@

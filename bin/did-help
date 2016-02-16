@@ -37,6 +37,7 @@ cmds    List all commands (entrypoints) for an image
 files   init files
 help    Show command help
 id      Print Docker ID data for an image to stdout
+man     Show man page
 run     Run the docker command for an entrypoint
 search  Find existing 'did' images
 shell   Open shell
@@ -114,6 +115,7 @@ cmd
 cmds       
 files      
 id         
+man        
 run        
 search     
 shell      
@@ -137,6 +139,19 @@ did-name  *      docker id
 Options:
 --json -j         Show Docker ID info in JSON (default)
 --yaml -y         Show Docker ID info in YAML
+
+...
+}
+
+help:man() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did man <did-name>
+
+Parameters:
+did-name  *      docker id
 
 ...
 }
@@ -238,6 +253,7 @@ cmd
 cmds       
 files      
 id         
+man        
 run        
 search     
 shell      
@@ -259,6 +275,16 @@ Options:
 --
 j,json         Show Docker ID info in JSON (default)
 y,yaml         Show Docker ID info in YAML
+"
+}
+
+getopt:man() {
+    GETOPT_SPEC="\
+  did man <did-name>
+
+Parameters:
+did-name  *      docker id
+
 "
 }
 

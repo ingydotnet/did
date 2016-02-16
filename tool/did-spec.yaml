@@ -46,6 +46,10 @@ subcommands:
     - name: file
       summary: files
       multiple: true
+  man:
+    summary: Show man page
+    parameters:
+    - *param-id
   run:
     summary: Run the docker command for an entrypoint
     parameters:

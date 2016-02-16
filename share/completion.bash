@@ -12,7 +12,7 @@ _did() {
     case $COMP_CWORD in
 
     1)
-        _did_compreply '_complete -- Generate self completion'$'\n''build     -- Add Docker ID layers to a '"'"'docker build'"'"' image'$'\n''cmd       -- Print a '"'"'docker run'"'"' command for an entrypoint'$'\n''cmds      -- List all commands (entrypoints) for an image'$'\n''files     -- init files'$'\n''help      -- Show command help'$'\n''id        -- Print Docker ID data for an image to stdout'$'\n''run       -- Run the docker command for an entrypoint'$'\n''search    -- Find existing '"'"'did'"'"' images'$'\n''shell     -- Open shell'
+        _did_compreply '_complete -- Generate self completion'$'\n''build     -- Add Docker ID layers to a '"'"'docker build'"'"' image'$'\n''cmd       -- Print a '"'"'docker run'"'"' command for an entrypoint'$'\n''cmds      -- List all commands (entrypoints) for an image'$'\n''files     -- init files'$'\n''help      -- Show command help'$'\n''id        -- Print Docker ID data for an image to stdout'$'\n''man       -- Show man page'$'\n''run       -- Run the docker command for an entrypoint'$'\n''search    -- Find existing '"'"'did'"'"' images'$'\n''shell     -- Open shell'
 
     ;;
     *)
@@ -108,7 +108,7 @@ _did() {
         case $COMP_CWORD in
 
         2)
-            _did_compreply '_complete '$'\n''build     '$'\n''cmd       '$'\n''cmds      '$'\n''completion'$'\n''files     '$'\n''id        '$'\n''pod       '$'\n''run       '$'\n''search    '$'\n''shell     '$'\n''validate  '
+            _did_compreply '_complete '$'\n''build     '$'\n''cmd       '$'\n''cmds      '$'\n''completion'$'\n''files     '$'\n''id        '$'\n''man       '$'\n''pod       '$'\n''run       '$'\n''search    '$'\n''shell     '$'\n''validate  '
 
         ;;
         *)
@@ -127,6 +127,8 @@ _did() {
           files)
           ;;
           id)
+          ;;
+          man)
           ;;
           pod)
           ;;
@@ -159,6 +161,23 @@ _did() {
 
           *)
             _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"$'\n'"'--json -- Show Docker ID info in JSON (default)'"$'\n'"'-j     -- Show Docker ID info in JSON (default)'"$'\n'"'--yaml -- Show Docker ID info in YAML'"$'\n'"'-y     -- Show Docker ID info in YAML'"
+          ;;
+        esac
+        ;;
+        esac
+      ;;
+      man)
+        case $COMP_CWORD in
+        2)
+                _did_man_param_did-name_completion
+        ;;
+        *)
+        case ${COMP_WORDS[$COMP_CWORD-1]} in
+          --help|-h)
+          ;;
+
+          *)
+            _did_compreply "'--help -- Show command help'"$'\n'"'-h     -- Show command help'"
           ;;
         esac
         ;;
@@ -244,6 +263,10 @@ _did_cmds_param_did-name_completion() {
     _did_compreply "$param_did-name"
 }
 _did_id_param_did-name_completion() {
+    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did-name"
+}
+_did_man_param_did-name_completion() {
     local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
     _did_compreply "$param_did-name"
 }

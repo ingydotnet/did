@@ -35,8 +35,7 @@ error() {
 }
 
 yaml2bash() {
-  [[ -n $DID_ROOT ]] || die "Set DID_ROOT"
-  "$DID_ROOT/sbin/yaml2bash" "$@"
+  docker run --rm --interactive --entrypoint /yaml2bash dids/did-tools "$@"
 }
 
 yaml2json() {

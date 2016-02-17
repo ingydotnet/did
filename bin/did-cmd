@@ -17,7 +17,10 @@ main() {
     getopt "$@"
   normalize-did-name
   eval "$(did id --yaml "$did_name" | yaml2bash)"
-  echo "docker run $cmd_main_run"
+  local var="cmd_${did_cmd}_run"
+  [[ -n ${!var} ]] ||
+    error "Can't find command '$did_cmd' for did '$did_name'"
+  echo "docker run ${!var}"
 }
 
 [[ $0 != "$BASH_SOURCE" ]] || main "$@"

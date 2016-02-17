@@ -3,22 +3,11 @@
 source "$(dirname $BASH_SOURCE)/../lib/use.bash"
 use GetOpt
 
-GETOPT_SPEC="\
-  did id [<options>] <did-name>
-
-See 'did help id' for more help.
-
-Options:
---
-v,volume    Additional volumes to mount
-e,env       Additional environment variables
-"
-
 main() {
   did_name="${1:?did_name is required first arg}"; shift
   normalize-did-name
   local cmd=(
-    $(did-cmd "$did_name")
+    $(did-cmd "$did_name=$did_cmd")
   )
   eval "${cmd[@]}" "$@"
 }

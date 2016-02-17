@@ -43,6 +43,14 @@ yaml2json() {
 }
 
 normalize-did-name() {
+  did_cmd=main
+  if [[ $did_name =~ =(.*) ]]; then
+    did_cmd="${BASH_REMATCH[1]}"
+    [[ ! $did_cmd =~ ^[[:word:]]+$ ]] ||
+      error "Invalid did command: '$did_cmd'."
+    did_name="${did_name%=*}"
+  fi
+
   if [[ ! $did_name =~ / ]]; then
     did_name="dids/$did_name"
   elif [[ $did_name =~ ^\./ ]]; then

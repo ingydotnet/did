@@ -1,3 +1,5 @@
+.PHONY: default build run update doc
+
 name := $(shell grep '^name:' docker-id.yml | cut -d' ' -f2)
 user := $(shell grep '^user:' docker-id.yml | cut -d' ' -f2)
 swim := $(name).swim

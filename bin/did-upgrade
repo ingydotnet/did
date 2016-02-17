@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+source "$(dirname $BASH_SOURCE)/../lib/use.bash"
+
+main() {
+  [[ -n "$DID_ROOT" ]] ||
+    error "'DID_ROOT' is not set. This is strange!"
+  (
+    set -x
+    cd "$DID_ROOT"
+    [[ $(git rev-parse --abbrev-ref HEAD) == master ]] ||
+      error "'$DID_ROOT' is not on 'master' branch. Can't upgrade."
+    git pull --ff-only
+  )
+  echo
+  echo "'$DID_ROOT' upgraded!"
+  echo
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
+
+# vim: set ft=sh lisp:

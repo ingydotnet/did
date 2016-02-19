@@ -1,3 +1,5 @@
+dids/did-tools  Tools for the did CLI
+dids/mysql      A MySQL server did
 dids/pairup     Start a custom pair programming environment
 dids/swim       Swim markup language CLI
 dids/vim        Edit local files using Vim in a docker container

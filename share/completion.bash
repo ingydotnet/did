@@ -57,7 +57,7 @@ _did() {
       cmd)
         case $COMP_CWORD in
         2)
-                _did_cmd_param_did-name_completion
+                _did_cmd_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -74,7 +74,7 @@ _did() {
       cmds)
         case $COMP_CWORD in
         2)
-                _did_cmds_param_did-name_completion
+                _did_cmds_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -148,7 +148,7 @@ _did() {
       id)
         case $COMP_CWORD in
         2)
-                _did_id_param_did-name_completion
+                _did_id_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -169,7 +169,7 @@ _did() {
       man)
         case $COMP_CWORD in
         2)
-                _did_man_param_did-name_completion
+                _did_man_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -186,7 +186,7 @@ _did() {
       run)
         case $COMP_CWORD in
         2)
-                _did_run_param_did-name_completion
+                _did_run_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -219,7 +219,7 @@ _did() {
       shell)
         case $COMP_CWORD in
         2)
-                _did_shell_param_did-name_completion
+                _did_shell_param_did_name_completion
         ;;
         *)
         case ${COMP_WORDS[$COMP_CWORD-1]} in
@@ -254,29 +254,29 @@ _did_compreply() {
     fi
 }
 
-_did_cmd_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_cmd_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
-_did_cmds_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_cmds_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
-_did_id_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_id_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
-_did_man_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_man_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
-_did_run_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_run_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
-_did_shell_param_did-name_completion() {
-    local param_did-name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
-    _did_compreply "$param_did-name"
+_did_shell_param_did_name_completion() {
+    local param_did_name=`docker images -a | cut -d' ' -f1 | grep ^dids/`
+    _did_compreply "$param_did_name"
 }
 
 

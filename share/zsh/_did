@@ -59,7 +59,7 @@ _did() {
 
                 case $state in
                 did-name)
-_did_cmd_param_did-name_completion
+_did_cmd_param_did_name_completion
                 ;;
                 esac
 
@@ -76,7 +76,7 @@ _did_cmd_param_did-name_completion
 
                 case $state in
                 did-name)
-_did_cmds_param_did-name_completion
+_did_cmds_param_did_name_completion
                 ;;
                 esac
 
@@ -306,7 +306,7 @@ _did_cmds_param_did-name_completion
 
                 case $state in
                 did-name)
-_did_id_param_did-name_completion
+_did_id_param_did_name_completion
                 ;;
                 esac
 
@@ -323,7 +323,7 @@ _did_id_param_did-name_completion
 
                 case $state in
                 did-name)
-_did_man_param_did-name_completion
+_did_man_param_did_name_completion
                 ;;
                 esac
 
@@ -340,7 +340,7 @@ _did_man_param_did-name_completion
 
                 case $state in
                 did-name)
-_did_run_param_did-name_completion
+_did_run_param_did_name_completion
                 ;;
                 esac
 
@@ -377,7 +377,7 @@ _did_run_param_did-name_completion
 
                 case $state in
                 did-name)
-_did_shell_param_did-name_completion
+_did_shell_param_did_name_completion
                 ;;
                 esac
 
@@ -390,5 +390,35 @@ _did_shell_param_did-name_completion
 
 }
 
+_did_cmd_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
+_did_cmds_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
+_did_id_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
+_did_man_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
+_did_run_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
+_did_shell_param_did_name_completion() {
+    local __dynamic_completion
+    IFS=$'\n' set -A __dynamic_completion `docker images -a | cut -d' ' -f1 | grep ^dids/`
+    compadd -X "did_name:" $__dynamic_completion
+}
 
 

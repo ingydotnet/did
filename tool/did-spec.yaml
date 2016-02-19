@@ -70,4 +70,6 @@ subcommands:
       summary: Ash
     parameters:
     - *param-id
+  upgrade:
+    summary: Upgrade did installation
 

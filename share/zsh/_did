@@ -15,7 +15,7 @@ _did() {
 
         case $state in
         cmd1)
-            _alternative 'args:cmd2:((_complete\:"Generate self completion" build\:"Add Docker ID layers to a '"'"'docker build'"'"' image" cmd\:"Print a '"'"'docker run'"'"' command for an entrypoint" cmds\:"List all commands (entrypoints) for an image" files\:"init files" help\:"Show command help" id\:"Print Docker ID data for an image to stdout" man\:"Show man page" run\:"Run the docker command for an entrypoint" search\:"Find existing '"'"'did'"'"' images" shell\:"Open shell"))'
+            _alternative 'args:cmd2:((_complete\:"Generate self completion" build\:"Add Docker ID layers to a '"'"'docker build'"'"' image" cmd\:"Print a '"'"'docker run'"'"' command for an entrypoint" cmds\:"List all commands (entrypoints) for an image" files\:"init files" help\:"Show command help" id\:"Print Docker ID data for an image to stdout" man\:"Show man page" run\:"Run the docker command for an entrypoint" search\:"Find existing '"'"'did'"'"' images" shell\:"Open shell" upgrade\:"Upgrade did installation"))'
         ;;
 
         args)
@@ -110,7 +110,7 @@ _did_cmds_param_did_name_completion
 
                 case $state in
                 cmd2)
-                    _alternative 'args:cmd3:((_complete build cmd cmds completion files id man pod run search shell validate))'
+                    _alternative 'args:cmd3:((_complete build cmd cmds completion files id man pod run search shell upgrade validate))'
                 ;;
 
                 args)
@@ -271,6 +271,19 @@ _did_cmds_param_did_name_completion
 
 
                     ;;
+                    upgrade)
+
+                        # ---- Command: help upgrade
+                        _arguments -s -C \
+                            '1: :->cmd1' \
+                            '2: :->cmd2' \
+                            '--help[Show command help]' \
+                            '-h[Show command help]' \
+                            '--all[]' \
+                            && ret=0
+
+
+                    ;;
                     validate)
 
                         # ---- Command: help validate
@@ -380,6 +393,17 @@ _did_run_param_did_name_completion
 _did_shell_param_did_name_completion
                 ;;
                 esac
+
+            ;;
+            upgrade)
+
+                # ---- Command: upgrade
+                _arguments -s -C \
+                    '1: :->cmd1' \
+                    '--help[Show command help]' \
+                    '-h[Show command help]' \
+                    && ret=0
+
 
             ;;
             esac

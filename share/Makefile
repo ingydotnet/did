@@ -19,3 +19,6 @@ doc: ReadMe.pod
 
 ReadMe.pod: $(swim)
 	did run swim --to=pod --complete < $< > $@
+
+clean:
+	rm -fr .dockerid*

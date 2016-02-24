@@ -7,11 +7,11 @@ main() {
   normalize-did-name
   if [[ "$(uname)" == Darwin ]]; then
     did_name_short="${did_name##*/}"
-    docker run --rm --entrypoint cat "$did_name" /docker-id/man.1 > \
+    docker run --rm --entrypoint cat "$did_name" /com/dockerid/man.1 > \
       "/tmp/$did_name_short.1"
     man "/tmp/$did_name_short.1"
   else
-    docker run --rm --entrypoint cat "$did_name" /docker-id/man.1 |
+    docker run --rm --entrypoint cat "$did_name" /com/dockerid/man.1 |
       man -l -
   fi
 }

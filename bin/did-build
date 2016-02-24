@@ -21,7 +21,7 @@ main() {
   [[ -e docker-id.yml ]] ||
     error "No './docker-id.yml'. Required for build."
 
-  local build_path="./.docker-id-$$"
+  local build_path="./.dockerid-$$"
   mkdir -p "$build_path"
 
   docker build --rm=true . | tee "$build_path/log"
@@ -48,9 +48,9 @@ FROM $image_id
 
 LABEL com.dockerid.id "$label"
 
-COPY ./ /docker-id/
+COPY ./ /com/dockerid/
 
-ENTRYPOINT ["/bin/cat", "/docker-id/docker-id.yml"]
+ENTRYPOINT ["/bin/cat", "/com/dockerid/docker-id.yml"]
 ...
 
   ( cd "$build_path" && docker build --rm=true --tag "$did_tag" . )

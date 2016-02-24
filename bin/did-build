@@ -40,8 +40,13 @@ main() {
 
   eval "$(yaml2bash < docker-id.yml)"
 
+  local label="$(cat docker-id.yml | yaml2json)"
+  label="${label//\"/\\\"}"
+
   cat <<... > "$build_path/Dockerfile"
 FROM $image_id
+
+LABEL com.dockerid.id "$label"
 
 COPY ./ /docker-id/
 

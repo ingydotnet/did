@@ -31,16 +31,17 @@ See:
 Usage: did  <subcommands> [options]
 
 Subcommands:
-build   Add Docker ID layers to a 'docker build' image
-cmd     Print a 'docker run' command for an entrypoint
-cmds    List all commands (entrypoints) for an image
-files   init files
-help    Show command help
-id      Print Docker ID data for an image to stdout
-man     Show man page
-run     Run the docker command for an entrypoint
-search  Find existing 'did' images
-shell   Open shell
+build    Add Docker ID layers to a 'docker build' image
+cmd      Print a 'docker run' command for an entrypoint
+cmds     List all commands (entrypoints) for an image
+files    init files
+help     Show command help
+id       Print Docker ID data for an image to stdout
+man      Show man page
+run      Run the docker command for an entrypoint
+search   Find existing 'did' images
+shell    Open shell
+upgrade  Upgrade did installation
 
 Options:
 --help -h         Show command help
@@ -119,6 +120,7 @@ man
 run        
 search     
 shell      
+upgrade    
 
 Options:
 --all         
@@ -200,6 +202,17 @@ Options:
 ...
 }
 
+help:upgrade() {
+  cat <<...
+did - A CLI tool for working with Docker ID container images.
+
+
+Usage: did upgrade
+
+
+...
+}
+
 
 getopt:build() {
     GETOPT_SPEC="\
@@ -257,6 +270,7 @@ man
 run        
 search     
 shell      
+upgrade    
 
 Options:
 --
@@ -320,6 +334,14 @@ Options:
 ash          Ash
 bash         Bash (default)
 zsh          Zsh
+"
+}
+
+getopt:upgrade() {
+    GETOPT_SPEC="\
+  did upgrade
+
+
 "
 }
 

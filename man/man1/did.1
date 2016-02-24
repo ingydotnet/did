@@ -70,8 +70,8 @@
 .rr rF
 .\" ========================================================================
 .\"
-.IX Title "IO::FILE=IO(0XE5D4F0) 1"
-.TH IO::FILE=IO(0XE5D4F0) 1 "2016-02-12" "perl v5.18.2" "User Contributed Perl Documentation"
+.IX Title "IO::FILE=IO(0X7FD07C802810) 1"
+.TH IO::FILE=IO(0X7FD07C802810) 1 "2016-02-24" "perl v5.18.2" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -84,12 +84,12 @@
 .SH "Synopsis"
 .IX Header "Synopsis"
 .Vb 6
-\&    > did search nethack
-\&    > did id \-\-yaml dids/nethack
-\&    > did man dids/nethack
-\&    > did cmds dids/nethack
-\&    > did cmd dids/nethack
-\&    > did run dids/nethack \-u ingy\-rog\-mal\-hum
+\&    > did search swim
+\&    > did id swim
+\&    > did man swim
+\&    > did cmds swim
+\&    > did cmd swim
+\&    > cat file.swim | did run swim \-\-to=pod \-\-complete
 .Ve
 .SH "Description"
 .IX Header "Description"
@@ -101,7 +101,7 @@ Search for known dids
 .IP "\(bu" 4
 Ask the did for a man page
 .IP "\(bu" 4
-Ask the did for its identification info (in \s-1JSON\s0 or \s-1YAML\s0)
+Ask the did for its dockerid info (in \s-1JSON\s0 or \s-1YAML\s0)
 .IP "\(bu" 4
 List the commands (entrypoints) of a did
 .IP "\(bu" 4
@@ -114,10 +114,38 @@ Run a did command
 .el .IP "\f(CWbuild\fR" 4
 .IX Item "build"
 This command helps you build a did image properly. First it runs a normal \f(CW\*(C`docker build\*(C'\fR command, then it copies over your Docker \s-1ID\s0 files and sets the Docker \s-1ID\s0 default entrypoint. It also tags your image. All in accordance to your \f(CW\*(C`docker/id.yml\*(C'\fR file.
+.ie n .IP """cmd""" 4
+.el .IP "\f(CWcmd\fR" 4
+.IX Item "cmd"
+Show the docker command for a did entry point.
+.ie n .IP """cmds""" 4
+.el .IP "\f(CWcmds\fR" 4
+.IX Item "cmds"
+List the entry points for a did.
 .ie n .IP """id""" 4
 .el .IP "\f(CWid\fR" 4
 .IX Item "id"
 Asks a did for its id data; either in \s-1YAML\s0 or \s-1JSON.\s0
+.ie n .IP """man""" 4
+.el .IP "\f(CWman\fR" 4
+.IX Item "man"
+Shows the manpage for a did.
+.ie n .IP """run""" 4
+.el .IP "\f(CWrun\fR" 4
+.IX Item "run"
+Run the docker command for a did entry point.
+.ie n .IP """search""" 4
+.el .IP "\f(CWsearch\fR" 4
+.IX Item "search"
+Search for known did images.
+.ie n .IP """shell""" 4
+.el .IP "\f(CWshell\fR" 4
+.IX Item "shell"
+Run a did image and shell into it.
+.ie n .IP """upgrade""" 4
+.el .IP "\f(CWupgrade\fR" 4
+.IX Item "upgrade"
+Upgrade the \f(CW\*(C`did\*(C'\fR tool.
 .SH "Installation"
 .IX Header "Installation"
 .Vb 3

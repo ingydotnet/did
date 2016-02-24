@@ -12,12 +12,12 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 =head1 Synopsis
 
-    > did search nethack
-    > did id --yaml dids/nethack
-    > did man dids/nethack
-    > did cmds dids/nethack
-    > did cmd dids/nethack
-    > did run dids/nethack -u ingy-rog-mal-hum
+    > did search swim
+    > did id swim
+    > did man swim
+    > did cmds swim
+    > did cmd swim
+    > cat file.swim | did run swim --to=pod --complete
 
 =head1 Description
 
@@ -35,7 +35,7 @@ these images. You can do things like the following:
 
 =item * Ask the did for a man page
 
-=item * Ask the did for its identification info (in JSON or YAML)
+=item * Ask the did for its dockerid info (in JSON or YAML)
 
 =item * List the commands (entrypoints) of a did
 
@@ -56,9 +56,37 @@ C<docker build> command, then it copies over your Docker ID files and sets the
 Docker ID default entrypoint. It also tags your image. All in accordance to
 your C<docker/id.yml> file.
 
+=item C<cmd>
+
+Show the docker command for a did entry point.
+
+=item C<cmds>
+
+List the entry points for a did.
+
 =item C<id>
 
 Asks a did for its id data; either in YAML or JSON.
+
+=item C<man>
+
+Shows the manpage for a did.
+
+=item C<run>
+
+Run the docker command for a did entry point.
+
+=item C<search>
+
+Search for known did images.
+
+=item C<shell>
+
+Run a did image and shell into it.
+
+=item C<upgrade>
+
+Upgrade the C<did> tool.
 
 =back
 

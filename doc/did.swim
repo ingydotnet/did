@@ -5,12 +5,12 @@ did
 
 = Synopsis
 
-  > did search nethack
-  > did id --yaml dids/nethack
-  > did man dids/nethack
-  > did cmds dids/nethack
-  > did cmd dids/nethack
-  > did run dids/nethack -u ingy-rog-mal-hum
+  > did search swim
+  > did id swim
+  > did man swim
+  > did cmds swim
+  > did cmd swim
+  > cat file.swim | did run swim --to=pod --complete
 
 = Description
 
@@ -24,7 +24,7 @@ images. You can do things like the following:
 
 * Search for known dids
 * Ask the did for a man page
-* Ask the did for its identification info (in JSON or YAML)
+* Ask the did for its dockerid info (in JSON or YAML)
 * List the commands (entrypoints) of a did
 * Print a `docker run ...` command for an entrypoint
 * Run a did command
@@ -38,9 +38,37 @@ images. You can do things like the following:
   the Docker ID default entrypoint. It also tags your image. All in accordance
   to your `docker/id.yml` file.
 
+- `cmd`
+
+  Show the docker command for a did entry point.
+
+- `cmds`
+
+  List the entry points for a did.
+
 - `id`
 
   Asks a did for its id data; either in YAML or JSON.
+
+- `man`
+
+  Shows the manpage for a did.
+
+- `run`
+
+  Run the docker command for a did entry point.
+
+- `search`
+
+  Search for known did images.
+
+- `shell`
+
+  Run a did image and shell into it.
+
+- `upgrade`
+
+  Upgrade the `did` tool.
 
 = Installation
 
